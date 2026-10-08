@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RAGVION — GenAI Knowledge Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="logo">
+                R
+            </div>
+
+            <div>
+                <h1>RAGVION</h1>
+
+                <span>
+                    GenAI Knowledge Assistant
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- New Chat -->
+
+        <button
+            id="newChat"
+            class="new-chat"
+        >
+            ＋ New chat
+        </button>
+
+
+        <!-- =================================================
+             KNOWLEDGE BASE
+        ================================================== -->
+
+        <div class="side-section">
+
+            <div class="section-title">
+                Knowledge Base
+            </div>
+
+
+            <label class="upload-box">
+
+                <input
+                    id="fileInput"
+                    type="file"
+                    accept=".pdf,.txt,.docx"
+                >
+
+                <span class="upload-icon">
+                    ↑
+                </span>
+
+                <strong>
+                    Upload document
+                </strong>
+
+                <small>
+                    PDF, TXT or DOCX
+                </small>
+
+            </label>
+
+
+            <div
+                id="uploadStatus"
+                class="status"
+            ></div>
+
+        </div>
+
+
+        <!-- =================================================
+             TOOLS
+        ================================================== -->
+
+        <div class="side-section">
+
+            <div class="section-title">
+                Tools
+            </div>
+
+
+            <button
+                id="syntheticBtn"
+                class="side-btn"
+            >
+                🧪 Generate synthetic Q&A
+            </button>
+
+
+            <button
+                id="clearBtn"
+                class="side-btn danger"
+            >
+                ⌫ Clear knowledge base
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
+
+        <div class="sidebar-bottom">
+
+            <div class="model-card">
+
+                <span class="dot"></span>
+
+                <div>
+
+                    <strong>
+                        Gemini + RAG
+                    </strong>
+
+                    <small>
+                        Local vector retrieval
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <strong>
+                    RAGVION Knowledge Assistant
+                </strong>
+
+                <span id="kbCount">
+                    Checking knowledge base...
+                </span>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <span class="pill">
+                    RAG
+                </span>
+
+                <span class="pill">
+                    LLM
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             CHAT
+        ================================================== -->
+
+        <section
+            id="chat"
+            class="chat"
+        >
+
+            <div
+                id="welcome"
+                class="welcome"
+            >
+
+                <div class="welcome-icon">
+                    ✦
+                </div>
+
+
+                <h2>
+                    What can I help you understand?
+                </h2>
+
+
+                <p>
+                    Upload your documents and ask questions.
+                    RAGVION retrieves relevant content before
+                    generating the answer.
+                </p>
+
+
+                <div class="suggestions">
+
+                    <button class="suggestion">
+                        Summarize my uploaded document
+                    </button>
+
+
+                    <button class="suggestion">
+                        What are the key concepts?
+                    </button>
+
+
+                    <button class="suggestion">
+                        Explain this topic simply
+                    </button>
+
+
+                    <button class="suggestion">
+                        Create questions from the document
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MESSAGE COMPOSER
+        ================================================== -->
+
+        <div class="composer-wrap">
+
+            <div class="composer">
+
+                <textarea
+                    id="messageInput"
+                    rows="1"
+                    placeholder="Message RAGVION..."
+                ></textarea>
+
+
+                <button
+                    id="sendBtn"
+                    class="send"
+                    title="Send"
+                >
+                    ➤
+                </button>
+
+            </div>
+
+
+            <div class="composer-note">
+
+                RAGVION can make mistakes.
+                Verify important information in the source documents.
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script
+    src="{{ url_for('static', filename='app.js') }}"
+></script>
+
+
+</body>
+
+</html>
