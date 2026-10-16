@@ -2,6 +2,7 @@ Flask
 python-dotenv
 google-genai
 chromadb
+gunicorn
 pypdf
 python-docx
 PyMuPDF
